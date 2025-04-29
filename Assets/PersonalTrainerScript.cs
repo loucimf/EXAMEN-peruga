@@ -50,6 +50,7 @@ public class PersonalTrainerScript : MonoBehaviour
     {
         print("Se aplico un descuento del 10% por reservar 6 horas!");
         int result = value * 10 / 100;
+        result = _totalPlata - result;
         return result;
     }
 
