@@ -11,11 +11,9 @@ public class PersonalTrainerScript : MonoBehaviour
         Recreativo = 2500,
     }
 
-
-
     #region Variables
     public int horasReservadas;
-    [field: SerializeField] private Entrenamientos eChosen;
+    [field: SerializeField] private Entrenamientos entrenamientoElegido;
 
     private int _totalPlataDiscount;
     private int _totalPlata;
@@ -26,8 +24,7 @@ public class PersonalTrainerScript : MonoBehaviour
     private int _plataPorHora;
     #endregion
 
-
-
+    #region Helper funcs
     bool ValidateData()
     {
         if (horasReservadas > 6 || horasReservadas < 1)
@@ -36,9 +33,9 @@ public class PersonalTrainerScript : MonoBehaviour
             return false;
         }
 
-        if (eChosen != Entrenamientos.Cardio &&
-            eChosen != Entrenamientos.Fuerza &&
-            eChosen != Entrenamientos.Recreativo)
+        if (entrenamientoElegido != Entrenamientos.Cardio &&
+            entrenamientoElegido != Entrenamientos.Fuerza &&
+            entrenamientoElegido != Entrenamientos.Recreativo)
         {
             print("Porfavor elegir un entrenamiento valido.");
             return false;
@@ -56,17 +53,17 @@ public class PersonalTrainerScript : MonoBehaviour
 
     void ChoosePerHourCharge()
     {
-        if (eChosen == Entrenamientos.Cardio)
+        if (entrenamientoElegido == Entrenamientos.Cardio)
         {
             _plataPorHora = _plataPorHoraCardio;
         }
 
-        if (eChosen == Entrenamientos.Fuerza)
+        if (entrenamientoElegido == Entrenamientos.Fuerza)
         {
             _plataPorHora = _plataPorHoraFuerza;
         }
 
-        if (eChosen == Entrenamientos.Recreativo)
+        if (entrenamientoElegido == Entrenamientos.Recreativo)
         {
             _plataPorHora = _plataPorHoraRecreativo;
         }
@@ -81,9 +78,10 @@ public class PersonalTrainerScript : MonoBehaviour
         if (horasReservadas == 6)
         {
             _totalPlataDiscount = ApplyDiscount(_totalPlata);
-            print("El total de dinero de tu entrenamiento de tipo " + eChosen + " CON DESCUENTO es de: " + _totalPlataDiscount + "!");
+            print("El total de dinero de tu entrenamiento de tipo " + entrenamientoElegido + " CON DESCUENTO es de: " + _totalPlataDiscount + "!");
         }
     }
+    #endregion
 
     private void Start()
     {
@@ -94,6 +92,6 @@ public class PersonalTrainerScript : MonoBehaviour
 
         ProcessData();
 
-        print("El total de dinero de tu entrenamiento de tipo " + eChosen + " SIN DESCUENTO es de: " + _totalPlata + "!");
+        print("El total de dinero de tu entrenamiento de tipo " + entrenamientoElegido + " SIN DESCUENTO es de: " + _totalPlata + "!");
     }
 }
