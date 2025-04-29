@@ -12,6 +12,7 @@ public class PersonalTrainerScript : MonoBehaviour
     }
 
     #region Variables
+    [Header("Variables")]
     public int horasReservadas;
     [field: SerializeField] private Entrenamientos entrenamientoElegido;
 
