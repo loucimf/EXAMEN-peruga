@@ -54,9 +54,8 @@ public class PersonalTrainerScript : MonoBehaviour
         return result;
     }
 
-    void ProcessData()
+    void ChoosePerHourCharge()
     {
-
         if (eChosen == Entrenamientos.Cardio)
         {
             _plataPorHora = _plataPorHoraCardio;
@@ -71,6 +70,11 @@ public class PersonalTrainerScript : MonoBehaviour
         {
             _plataPorHora = _plataPorHoraRecreativo;
         }
+    }
+
+    void ProcessData()
+    {
+        ChoosePerHourCharge();
 
         _totalPlata = _plataPorHora * horasReservadas;
         
